@@ -139,7 +139,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # configuração do django para disparo de e-mail.
 EMAIL_USE_TLS = True  # usa TLS?
 MAIL_USE_SSL = False
-EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_HOST = 'smtp.gmail.com'
 # host responsavel pelo disparo
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "") # usuario do smtp
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
