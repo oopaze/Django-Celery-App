@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+    <table class="table table-striped">
+        <tr>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+        {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.titulo }}</td>
+                <td>{{ obj.descricao }}</td>
+                <td coluna_id="{{ obj.id }}">
+                    <div class="span-colored {{obj.status}}">
+                        {{ obj.status_display }}
+                    </div>
+                </td>
+                <td>
+                    <a class="btn btn-info" href="{% url "task-detail" obj.pk %}"> Detalhes </a>
+                    <a class="btn btn-danger" href="{% url "task-delete" obj.pk %}"> Deletar </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>   
+{% endblock %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "task-create" %}"> Adicionar Task </a>
+    </li>
+{% endblock %}

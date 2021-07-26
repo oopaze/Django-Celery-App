@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success"> Salvar </button>
+    </form>
+
+{% endblock %}
+
+
+{% block nav %}
+    <li class="nav-item">
+        <a href="{% url "task-list" %}" class="nav-link"> Voltar para listagem </a>
+    </li>
+{% endblock %}

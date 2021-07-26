@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div>
+        <p> <Strong>Título: </Strong> {{ object.titulo }} </p>
+        <p> <Strong>Descrição: </Strong> {{ object.descricao }} </p>
+        <p> <Strong>Tempo de Espera: </Strong> {{ object.tempo_espera }} seg </p>
+        <p>
+            <div style="display: flex;">
+                <Strong style="margin-right: 10px; line-height: 30px">Status: </Strong> 
+                <div class="span-colored {{object.status}}">
+                    {{ object.status_display }}
+                </div> 
+            </div> 
+        </p>
+        <br>
+        <button class="btn btn-success execute"> Executar Task </button>
+    </div>
+
+
+{% endblock %}
+
+
+{% block nav %}
+    <li class="nav-item">
+        <a href="{% url "task-list" %}" class="nav-link"> Voltar para listagem </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{% url "task-update" object.id %}" class="nav-link"> Atualizar Task </a>
+    </li>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+
+        $(document).ready(async function(){
+            $(".execute").on("click", async function(){
+                polling = true;
+                let url = "{% url 'task-execute' object.id %}";
+
+                await $.ajax({
+                    url: url
+                });
+
+                window.location.reload()
+            })
+        });
+    </script>
+{% endblock %}
